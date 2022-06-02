@@ -106,10 +106,14 @@ function Get-TeamsAppPermissionPolicyMembersToAdd
     param
     (
         [Parameter(Mandatory=$true)]
-        [string[]]$PolicyMemberObjectIds,
+        [AllowEmptyCollection()]
+        [string[]]
+        $PolicyMemberObjectIds,
 
         [Parameter(Mandatory=$true)]
-        [string[]]$GroupMemberObjectIds
+        [AllowEmptyCollection()]
+        [string[]]
+        $GroupMemberObjectIds
     )
 
     begin
@@ -133,10 +137,14 @@ function Get-TeamsAppPermissionPolicyMembersToRemove
     param
     (
         [Parameter(Mandatory=$true)]
-        [string[]]$PolicyMemberObjectIds,
+        [AllowEmptyCollection()]
+        [string[]]
+        $PolicyMemberObjectIds,
 
         [Parameter(Mandatory=$true)]
-        [string[]]$GroupMemberObjectIds
+        [AllowEmptyCollection()]
+        [string[]]
+        $GroupMemberObjectIds
     )
 
     begin

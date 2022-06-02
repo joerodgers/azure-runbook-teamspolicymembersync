@@ -26,6 +26,9 @@ param policyName string
 @description('Azure AD Group ObjectId.  Separate multiple values with a semi-colon.')
 param groupId string
 
+@description('Runbook asset host URI')
+param asseturi string = 'https://raw.githubusercontent.com/joerodgers/azure-runbook-teamspolicymembersync/main'
+
 var suffix = toLower(uniqueString(resourceGroup().id))
 
 module automation_account './automation.bicep' = {
@@ -35,6 +38,13 @@ module automation_account './automation.bicep' = {
     location: location
     sku: 'Basic'
     runbooks: [
+      {
+        name: 'runbook-policy-member-sync'
+        uri:  '${asseturi}/runbook-policy-member-sync.ps1'
+        type: 'PowerShell'
+        logProgress: 'false'
+        logVerbose: 'false'
+      }
     ]
     modules: [
       {

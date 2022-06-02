@@ -21,9 +21,9 @@ param modules array = []
 
 @description('Runbooks to import into automation account')
 @metadata({
-  runbookName: 'Runbook name'
-  runbookUri:  'Runbook URI'
-  runbookType: 'Runbook type: Graph, Graph PowerShell, Graph PowerShellWorkflow, PowerShell, PowerShell7, PowerShell Workflow, Script'
+  name: 'Runbook name'
+  uri:  'Runbook URI'
+  type: 'Runbook type: Graph, Graph PowerShell, Graph PowerShellWorkflow, PowerShell, PowerShell7, PowerShell Workflow, Script'
   logProgress: 'Enable progress logs'
   logVerbose:  'Enable verbose logs'
 })
@@ -83,14 +83,14 @@ resource automation_account_modules 'Microsoft.Automation/automationAccounts/mod
 
 resource automation_runbooks 'Microsoft.Automation/automationAccounts/runbooks@2019-06-01' = [for runbook in runbooks: {
   parent: automation_account
-  name: runbook.runbookName
+  name: runbook.name
   location: location
   properties: {
-    runbookType: runbook.runbookType
+    runbookType: runbook.type
     logProgress: runbook.logProgress
     logVerbose: runbook.logVerbose
     publishContentLink: {
-      uri: runbook.runbookUri
+      uri: runbook.uri
     }
   }
 }]

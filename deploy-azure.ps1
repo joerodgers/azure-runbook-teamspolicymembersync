@@ -63,7 +63,7 @@ param
     Write-Host "[$(Get-Date)] - Connected as: $($ctx.Account.Id)"
     Write-Host "[$(Get-Date)] - Subscription: $($subscription.Subscription.Name) $($subscription.Subscription.Id)"
 
-# build template parameters
+# build parameters
 
     $pfx = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2( $CertificatePath, $CertificatePassword, "Exportable,PersistKeySet,MachineKeySet")
 
@@ -71,7 +71,7 @@ param
         certificateBase64Value = [System.Convert]::ToBase64String( $pfx.Export([System.Security.Cryptography.X509Certificates.X509ContentType]::Pfx) )
         certificateThumbprint  = $pfx.Thumbprint
         clientId               = $ClientId
-        tenantId               = $TenantI
+        tenantId               = $TenantId
         username               = $TeamsCredential.UserName
         password               = $TeamsCredential.Password
         policyName             = $TeamsPolicy
